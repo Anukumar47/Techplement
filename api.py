@@ -2,7 +2,7 @@ from flask import *
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/user-auth-db'
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/user-api'
 mongo = PyMongo(app)
 
 # Signup route
@@ -58,7 +58,7 @@ def update_profile(email):
     new_password = data.get('password')
 
     if not new_email or not new_password:
-        return jsonify({'error': 'Email or password is required for update'}), 400
+        return jsonify({'error': 'Email and password is required for update'}), 400
 
     update_fields = {}
     if new_email:
